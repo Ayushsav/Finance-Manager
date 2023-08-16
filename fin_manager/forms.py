@@ -7,8 +7,9 @@ class LiabilityForm(forms.ModelForm):
         fields = ['name', 'amount', 'interest_rate', 'end_date']
         
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'amount': forms.NumberInput(attrs={'class': 'form-control'}),
-            'interest_rate': forms.NumberInput(attrs={'class': 'form-control'}),
-            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            
+            'name': forms.TextInput(attrs={'class': 'form-control','style': 'color: black;'}),
+            'amount': forms.NumberInput(attrs={'class': 'form-control','style': 'color: black;'}),
+            'interest_rate': forms.NumberInput(attrs={'class': 'form-control','style': 'color: black;'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control','style': 'color: black;'}),
         }

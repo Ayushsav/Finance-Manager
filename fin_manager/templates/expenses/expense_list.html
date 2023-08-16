@@ -1,26 +1,72 @@
-{% block content %}
-  <h2>Expense List</h2>
-  <div class="expenses">
-    {% for year_month, liabilities in expense_data.items %}
-      <div class="month">
-        <h3>{{ year_month }}</h3>
-        <ul>
-          {% for liability in liabilities %}
-            <li>
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <title>Home</title>
+  <link rel="stylesheet" href="{% static 'forms.css' %}">
+</head>
+
+<body>
+
+  <div class="d-flex justify-content-center align-items-center "
+    style="height:100vh; width:100%; background-color:#333333;">
+    {% block content %}
+    <div style="margin: 193px;">
+      <h2 style="color: white;">Expense List</h2>
+
+      <div class="expenses">
+        {% for year_month, liabilities in expense_data.items %}
+        <div class="month">
+          <h3 style="color: white;">{{ year_month }}</h3>
+          <ul>
+            {% for liability in liabilities %}
+            <li style="color: white;">
               {{ liability.name }} - ${{ liability.amount }}
-              <button class="toggle-button">Toggle End Date</button>
+              <!-- <button class="toggle-button">Toggle End Date</button> -->
               <span class="end-date" style="display: none;">End Date: {{ liability.end_date }}</span>
             </li>
-          {% endfor %}
-        </ul>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
       </div>
-    {% endfor %}
+    </div>
+    <div style="margin: 250px;">
+      <div>
+        <h2 class="m-2" style="color: white;">Add Liability</h2>
+      </div>
+      <div>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary rounded-pill ">Add Liability</button>
+        </form>
+      </div>
+    </div>
   </div>
+  {% endblock %}
 
-  <h2>Add Liability</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add Liability</button>
-  </form>
-{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
